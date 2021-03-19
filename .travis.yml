@@ -48,18 +48,18 @@ matrix:
   include:
     - arch: arm64
       env:
-        - JOB="3.7, arm64" PYTEST_WORKERS=4 ENV_FILE="ci/deps/travis-37-arm64.yaml" PATTERN="(not slow and not network and not clipboard and not arm_slow)"
+        - JOB="3.7, arm64" PYTEST_WORKERS=2 ENV_FILE="ci/deps/travis-37-arm64.yaml" PATTERN="(not slow and not network and not clipboard and not arm_slow)"
     - arch: ppc64le # nothing spcecific to arm64 from ci/deps/travis-37-arm64.yaml,hence used the same file
       env:
-        - JOB="3.7, ppc64le" PYTEST_WORKERS=4 ENV_FILE="ci/deps/travis-37-arm64.yaml" PATTERN="(not slow and not network and not clipboard and not arm_slow)"
+        - JOB="3.7, ppc64le" PYTEST_WORKERS=2 ENV_FILE="ci/deps/travis-37-arm64.yaml" PATTERN="(not slow and not network and not clipboard and not arm_slow)"
   allow_failures:
     # Moved to allowed_failures 2020-09-29 due to timeouts https://github.com/pandas-dev/pandas/issues/36719
     - arch: arm64
       env:
-        - JOB="3.7, arm64" PYTEST_WORKERS=4 ENV_FILE="ci/deps/travis-37-arm64.yaml" PATTERN="(not slow and not network and not clipboard and not arm_slow)"
+        - JOB="3.7, arm64" PYTEST_WORKERS=2 ENV_FILE="ci/deps/travis-37-arm64.yaml" PATTERN="(not slow and not network and not clipboard and not arm_slow)"
     - arch: ppc64le
       env:
-        - JOB="3.7, ppc64le" PYTEST_WORKERS=4 ENV_FILE="ci/deps/travis-37-arm64.yaml" PATTERN="(not slow and not network and not clipboard and not arm_slow)"
+        - JOB="3.7, ppc64le" PYTEST_WORKERS=2 ENV_FILE="ci/deps/travis-37-arm64.yaml" PATTERN="(not slow and not network and not clipboard and not arm_slow)"
 
 
 before_install:
@@ -77,7 +77,7 @@ before_install:
 install:
   - echo "install start"
   - ci/prep_cython_cache.sh
-  - ci/setup_env.sh
+  - ci/setup_env.sh  # Added ppc64le support at this script setup_env.sh to create conda env & test and raise PR to community merge
   - ci/submit_cython_cache.sh
   - echo "install done"
 
