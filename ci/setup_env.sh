@@ -39,7 +39,11 @@ fi
 if [ "${TRAVIS_CPU_ARCH}" == "arm64" ]; then
   CONDA_URL="https://github.com/conda-forge/miniforge/releases/download/4.8.5-1/Miniforge3-4.8.5-1-Linux-aarch64.sh"
 else
-  CONDA_URL="https://repo.continuum.io/miniconda/Miniconda3-latest-$CONDA_OS.sh"
+  if [ "${TRAVIS_CPU_ARCH}" == "ppc64le" ]; then
+    CONDA_URL=" https://repo.anaconda.com/miniconda/Miniconda2-latest-Linux-ppc64le.sh "
+  else
+    CONDA_URL="https://repo.continuum.io/miniconda/Miniconda3-latest-$CONDA_OS.sh"
+  fi
 fi
 wget -q $CONDA_URL -O miniconda.sh
 chmod +x miniconda.sh
