@@ -87,7 +87,13 @@ script:
   - echo "script start"
   - echo "$JOB"
   - source activate pandas-dev
-  - travis_wait 30 ci/run_tests.sh
+  - if [[ "$TRAVIS_CPU_ARCH" == "ppc64le" ]]; then #run_tests.sh not supporting power and timeout issue
+	     pip install pytest-parallel;
+       pytest -v -n 4 pandas/ --ignore=pandas/tests/window/ --ignore=pandas/tests/plotting/ ;
+    else
+       ci/run_tests.sh;
+	  fi
+ 
 
 after_script:
   - echo "after_script start"
