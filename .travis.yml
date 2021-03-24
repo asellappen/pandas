@@ -87,7 +87,8 @@ script:
   - echo "script start"
   - echo "$JOB"
   - source activate pandas-dev
-  - if [[ "$TRAVIS_CPU_ARCH" == "ppc64le" ]]; then #run_tests.sh not supporting power and timeout issue
+  #run_tests.sh not supporting power and timeout issue
+  - if [[ "$TRAVIS_CPU_ARCH" == "ppc64le" ]]; then
        pip install pytest-parallel;
        pytest -v -n 4 pandas/ --ignore=pandas/tests/window/ --ignore=pandas/tests/plotting/ ;
     else
