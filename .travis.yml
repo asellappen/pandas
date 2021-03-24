@@ -86,7 +86,7 @@ script:
   #run_tests.sh not supporting power and timeout issue
   - if [[ "$TRAVIS_CPU_ARCH" == "ppc64le" ]]; then
        pip install pytest-parallel;
-       travis_wait 30 pytest -n 2 pandas/ --ignore=pandas/tests/window/ --ignore=pandas/tests/plotting/ ;
+       travis_wait 30 pytest -n 2 pandas/ -s --cov=pandas --cov-report=xml pandas --ignore=pandas/tests/io/test_clipboard.py  --ignore=pandas/tests/indexes/interval/test_astype.py  --ignore=pandas/tests/tools/test_to_numeric.py;
     else
        ci/run_tests.sh;
     fi
