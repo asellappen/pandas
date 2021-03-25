@@ -87,7 +87,7 @@ script:
   # for ppc64le,Skip collection of window tests,unicode wasn't copied correctly on PY3 on windows,Pyperclip could not find a copy/paste mechanism for your system, pandas/tests/plotting/ and pandas/tests/window/
   - if [[ "$TRAVIS_CPU_ARCH" == "ppc64le" ]]; then
        pip install pytest-parallel;
-       travis_wait 30 pytest -n 4 pandas/  --ignore=pandas/tests/window/ --ignore=pandas/tests/plotting/ --ignore=pandas/tests/io/test_clipboard.py  --ignore=pandas/tests/indexes/interval/test_astype.py  --ignore=pandas/tests/tools/test_to_numeric.py ;
+       travis_wait 20 pytest -n 6 pandas/  --ignore=pandas/tests/window/ --ignore=pandas/tests/plotting/ --ignore=pandas/tests/io/test_clipboard.py  --ignore=pandas/tests/indexes/interval/test_astype.py  --ignore=pandas/tests/tools/test_to_numeric.py ;
     else
        ci/run_tests.sh;
     fi
